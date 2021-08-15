@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Header from "./components/header/Header.jsx";
+import Login from "./components/login/Login";
+import Main from "./components/main/Main";
+import Sidebar from "./components/sidebar/Sidebar";
+import { useStateValue } from "./Stateprovider";
 
-function App() {
+const App = () => {
+  const [{ isOpen, user }, dispatch] = useStateValue();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      {!user ? (
+        <Login />
+      ) : (
+        <div className={`app__central ${isOpen ? "displayed" : ""}`}>
+          <Sidebar />
+          <Main />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
