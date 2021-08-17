@@ -7,3 +7,13 @@
     transform: translateX(-310px);
 }
 
+.sidebar__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px solid goldenrod;
+}
+
+.sidebar__bottom {
+    margin-top: 2rem;
+}

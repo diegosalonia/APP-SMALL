@@ -1,6 +1,23 @@
 .post {
-    border: 1px solid orangered;
+    display: flex;
+    flex-direction: column;   
+}
+
+.post__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
     border-radius: 1rem;
+    border: 1px solid orangered;
     padding: 1rem;
-    margin: 1rem;    
+    margin: 1rem;
+}
+
+.post__bodyLeft h4 {
+    color: gray
+}
+
+.avatar {
+    margin-top: -2rem;
+    margin-left: -2rem;
 }

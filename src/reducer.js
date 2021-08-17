@@ -1,6 +1,6 @@
 export const initialState = {
   isOpen: false,
-  user: null,
+  user: {},
 };
 
 export const actionTypes = {
@@ -8,8 +8,11 @@ export const actionTypes = {
   SET_USER: "SET_USER",
 };
 
+
+
 // escucha si en algun punto de la manguera de datos, se han inyectado datos.
 const reducer = (state, action) => {
+  console.log(action)
   switch (action.type) {
     case actionTypes.TOGGLE_MENU:
       return {
@@ -21,9 +24,9 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
-    default:
-      return state;
-  }
-};
+      default:
+        return state;
+      }
+    };
 
 export default reducer;

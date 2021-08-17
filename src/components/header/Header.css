@@ -1,10 +1,9 @@
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid whitesmoke;
     background-color: aquamarine;
-    padding: 0.8rem 0;
+    padding: 1rem 2rem;
     position: sticky;
     top: 0;
     left: 0;
@@ -22,26 +21,12 @@
     margin-left: 1rem;
 }
 
-.header__menu {
-    display: flex;
-    align-items: center;
-}
-
-.header__menu h3 {
-    display: flex;
-    margin-right: 1rem;
-    align-items: center;
-}
-
-.header__menu h3 span {
-    display: flex;    
-}
-
 .header__right {
     display: flex;
     align-items: center;
 }
 
-.header__right form {
-    margin-right: 1rem;
+.header__right button {
+    margin: 0.5rem;
+    padding: 0.5rem;
 }

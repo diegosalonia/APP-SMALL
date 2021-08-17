@@ -1,6 +1,8 @@
 import React, { createContext, useReducer, useContext } from "react"
 
-export const StateContext = createContext() //inicializamos la manguera de datos
+export const StateContext = createContext({
+    user: {}
+}) //inicializamos la manguera de datos
 
 export const StateProvider = ({reducer, initialState, children}) => {// 
     return (
