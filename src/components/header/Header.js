@@ -7,8 +7,9 @@ import { useStateValue } from "../../Stateprovider";
 import logo from "../../assets/logo.png";
 import { auth } from "../../firebase";
 
+
 const Header = () => {
-  const [{ isOpen, user }, dispatch] = useStateValue();
+  const [{ isOpen, user, darkMode }, dispatch] = useStateValue();
   const signOut = () => {
     auth.signOut().then((user) =>
       dispatch({
@@ -34,7 +35,11 @@ const Header = () => {
       </div>
       <div className="header__right">
         <Avatar src={user?.photoURL} />
-        <Switch />
+        <Switch checked={darkMode} onChange={() => {
+          dispatch({
+            type: actionTypes.SET_DARKMODE,
+            darkMode: !darkMode,
+          })}}/>
         {user && (
           <Button onClick={signOut} variant="contained">
             Sign Out

@@ -1,3 +1,4 @@
+import { ThemeProvider, CssBaseline, createTheme } from "@material-ui/core";
 import React, { useEffect} from "react";
 import "./App.css";
 import Header from "./components/header/Header";
@@ -9,8 +10,14 @@ import { actionTypes } from "./reducer";
 import { useStateValue } from "./Stateprovider";
 
 const App = () => {
-  const [{ isOpen, user }, dispatch] = useStateValue();
+  const [{ isOpen, user, darkMode }, dispatch] = useStateValue();
   
+  const theme = createTheme({
+    palette: {
+      type: darkMode ? "dark" : "light",
+    }
+  })
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if(user) {
@@ -24,14 +31,22 @@ const App = () => {
   }, [])
   return (
     <div className="App">
-      <Header />
       {!user ? (
+        <>
+        <Header />
         <Login />
+        </>
       ) : (
+        <>
+        <ThemeProvider theme={theme}>   
+        <CssBaseline/>
+        <Header />
         <div className={`app__central ${isOpen ? "displayed" : ""}`}>
           <Sidebar />
           <Main />
         </div>
+        </ThemeProvider> 
+        </>
       )}
     </div>
   );

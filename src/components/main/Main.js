@@ -4,8 +4,11 @@ import "./Main.css";
 import Post from "./post/Post";
 import { db } from "../../firebase";
 import firebase from "firebase";
+import FlipMove from "react-flip-move";
+import { useStateValue } from "../../Stateprovider";
 
 const Main = () => {
+  const [{ user }, dispatch] = useStateValue();
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState({
     title: "",
@@ -31,7 +34,10 @@ const Main = () => {
       db.collection("posts").add({
         title: input.title,
         text: input.text,
+        username: user?.displayName,
+        avatar: user?.photoURL,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        isRed: false,
       });
       setInput({
         title: "",
@@ -70,9 +76,19 @@ const Main = () => {
         </form>
       </div>
       <div className="main__post">
-        {posts.map(({ id, data: { title, text } }) => (
-          <Post title={title} text={text} />
-        ))}
+        <FlipMove>
+          {posts.map(({ id, data: { title, text, isRed, username, avatar } }) => (
+            <Post
+              key={id}
+              id={id}
+              title={title}
+              text={text}
+              isRed={isRed}
+              username={username}
+              avatar={avatar}
+            />
+          ))}
+        </FlipMove>
       </div>
     </div>
   );

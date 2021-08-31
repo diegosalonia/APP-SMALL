@@ -1,11 +1,13 @@
 export const initialState = {
   isOpen: false,
   user: {},
+  darkMode: false,
 };
 
 export const actionTypes = {
   TOGGLE_MENU: "TOGGLE_MENU",
   SET_USER: "SET_USER",
+  SET_DARKMODE: "SET_DARKMODE",
 };
 
 
@@ -24,8 +26,13 @@ const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
-      default:
-        return state;
+    case actionTypes.SET_DARKMODE:
+      return {
+        ...state,
+        darkMode: action.darkMode
+      };
+    default:
+      return state;
       }
     };
 
